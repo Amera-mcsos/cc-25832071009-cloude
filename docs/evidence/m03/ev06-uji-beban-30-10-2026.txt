@@ -1,0 +1,55 @@
+EV-06 - Hasil uji beban M03
+Tanggal      : 30-10-2026
+VPS          : ptrsrv (cc-m03-25832071009), Ubuntu 24.04.5 LTS, 2 vCPU / 2 GB RAM / 20 GB disk
+Kondisi uji  : dari dalam VPS (loopback), melalui Caddy -> Gunicorn -> Flask
+Perintah     : ab -n 2000 -c 10 http://127.0.0.1/health
+               ab -n 2000 -c 10 http://127.0.0.1/
+
+=== HASIL 1: /health ===
+Server Software:        gunicorn
+Document Path:          /health
+Document Length:        91 bytes
+Concurrency Level:      10
+Time taken for tests:   2.308 seconds
+Complete requests:      2000
+Failed requests:        0
+Requests per second:    866.61 [#/sec] (mean)
+Time per request:       11.539 [ms] (mean)
+Percentage of the requests served within a certain time (ms)
+  50%     11
+  66%     12
+  75%     13
+  80%     14
+  90%     15
+  95%     16
+  98%     17
+  99%     18
+ 100%     23 (longest request)
+
+=== HASIL 2: / (halaman utama) ===
+Server Software:        gunicorn
+Document Path:          /
+Document Length:        782 bytes
+Concurrency Level:      10
+Time taken for tests:   2.848 seconds
+Complete requests:      2000
+Failed requests:        0
+Requests per second:    702.29 [#/sec] (mean)
+Time per request:       14.239 [ms] (mean)
+Percentage of the requests served within a certain time (ms)
+  50%     14
+  66%     15
+  75%     16
+  80%     17
+  90%     19
+  95%     21
+  98%     23
+  99%     24
+ 100%     27 (longest request)
+
+=== PEMAKAIAN MEMORI ===
+RAM terpakai saat diam (free -m)   : 342 MB dari 1967 MB
+RAM puncak selama rekaman 30 detik : 376 MB
+Swap terpakai                      : 0 MB
+Memori service cc-m03              : 35,1 MB (systemctl status)
+Catatan: uji dijalankan dari dalam VPS; angka puncak berada dalam rentang idle (342-382 MB).
